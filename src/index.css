@@ -2,41 +2,67 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Maharshi Mehta Portfolio Design System */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap');
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Warm Portfolio Color Palette */
+    --background: 35 25% 97%;
+    --foreground: 20 14% 8%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 35 25% 97%;
+    --card-foreground: 20 14% 8%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 35 25% 97%;
+    --popover-foreground: 20 14% 8%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 20 14% 8%;
+    --primary-foreground: 35 25% 97%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 25 20% 92%;
+    --secondary-foreground: 20 14% 8%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 25 20% 92%;
+    --muted-foreground: 20 9% 46%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 35 45% 85%;
+    --accent-foreground: 20 14% 8%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 35 25% 97%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 25 20% 88%;
+    --input: 25 20% 88%;
+    --ring: 20 14% 8%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* Portfolio Specific Colors */
+    --cream: 35 25% 95%;
+    --warm-beige: 35 20% 92%;
+    --soft-orange: 25 65% 75%;
+    --deep-brown: 20 14% 8%;
+    --glass-bg: 35 25% 97%;
+    --glass-border: 25 20% 88%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(35, 25%, 97%) 0%, hsl(35, 20%, 92%) 100%);
+    --gradient-glass: linear-gradient(135deg, hsla(35, 25%, 97%, 0.8) 0%, hsla(35, 20%, 92%, 0.6) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(25, 65%, 75%) 0%, hsl(35, 55%, 80%) 100%);
+
+    /* Shadows */
+    --shadow-glass: 0 8px 32px hsla(20, 14%, 8%, 0.1);
+    --shadow-card: 0 4px 20px hsla(20, 14%, 8%, 0.08);
+    --shadow-hover: 0 12px 40px hsla(20, 14%, 8%, 0.15);
+
+    /* Typography */
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* Animations */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +126,88 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-body;
+    background: var(--gradient-hero);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer components {
+  /* Glass morphism card */
+  .glass-card {
+    @apply bg-white/60 backdrop-blur-xl border border-white/20 rounded-2xl;
+    background: var(--gradient-glass);
+    box-shadow: var(--shadow-glass);
+    transition: var(--transition-smooth);
+  }
+
+  .glass-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-4px);
+  }
+
+  /* Hero text gradient */
+  .hero-text {
+    background: linear-gradient(135deg, hsl(20, 14%, 8%) 0%, hsl(25, 65%, 45%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Accent button */
+  .btn-accent {
+    background: var(--gradient-accent);
+    @apply text-deep-brown font-medium px-8 py-3 rounded-full;
+    transition: var(--transition-bounce);
+  }
+
+  .btn-accent:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-hover);
+  }
+
+  /* Floating animation */
+  .float-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  /* Fade in animations */
+  .fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .fade-in-up.delay-1 { animation-delay: 0.2s; }
+  .fade-in-up.delay-2 { animation-delay: 0.4s; }
+  .fade-in-up.delay-3 { animation-delay: 0.6s; }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Navigation hover effect */
+  .nav-link {
+    @apply relative text-foreground transition-colors duration-300 hover:text-primary;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
   }
 }

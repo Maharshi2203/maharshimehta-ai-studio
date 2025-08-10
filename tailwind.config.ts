@@ -18,6 +18,10 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				'display': ['Playfair Display', 'serif'],
+				'body': ['Inter', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -61,7 +65,12 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				// Portfolio specific colors
+				'cream': 'hsl(var(--cream))',
+				'warm-beige': 'hsl(var(--warm-beige))',
+				'soft-orange': 'hsl(var(--soft-orange))',
+				'deep-brown': 'hsl(var(--deep-brown))',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
